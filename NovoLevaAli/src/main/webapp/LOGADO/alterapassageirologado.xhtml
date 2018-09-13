@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Altera Passageiro</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menupassageirologado.xhtml"/>
+        
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
+        
+        <h:form>
+            <p:fieldset legend="Alterar Passageiro">
+                <p:panelGrid columns="2">
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.id_passageiro}"/>
+                    
+                    <h:outputText value="Nome"/>
+                    <p:inputText value="#{passageiroController.selectedPassageiro.nome}"/>
+                    
+                    <h:outputText value="CPF"/>
+                    <p:inputMask value="#{passageiroController.selectedPassageiro.cpf}" mask="999.999.999-99" />
+                    
+                    <h:outputText value="Email"/>
+                    <p:inputText value="#{passageiroController.selectedPassageiro.email}"/>
+                    
+                    
+                    <h:outputText value="Telefone*:"/>
+                    <p:inputMask id="txtTelefone" value="#{passageiroController.selectedPassageiro.telefone}" mask="(99)9-9999-9999"/>
+                    
+                    <h:outputText value="Login"/>
+                    <p:inputText value="#{passageiroController.selectedPassageiro.login}"/>
+                    
+                    <h:outputText value="Senha"/>
+                    <p:inputText value="#{passageiroController.selectedPassageiro.senha}"/>
+                    
+                </p:panelGrid>
+               
+                <p:commandButton value="Alterar" action="#{passageiroController.alterar}"/>
+                
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>

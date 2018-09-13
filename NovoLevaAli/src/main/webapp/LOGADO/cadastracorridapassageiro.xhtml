@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>CadCorrida</title>
+    </h:head>
+    <h:body>
+
+        <ui:include src="menupassageirologado.xhtml"/>
+
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href = "indexlogar.xhtml";</script>
+        </c:if>
+
+        <h:form id="formCadCorrida">
+            <p:growl life="400" showDetail="true" showSummary="true" sticky="true"/>
+            <p:fieldset id="fieldCadCorr" legend="Cadastro de Corrida">
+                <p:panelGrid columns="3">
+
+
+
+                    <h:outputText  value="Passageiro"/>
+                    <h:outputText id="txtPassageiro" 
+                                  value="#{loginControllerPassageiro.passageiroLogado.nome}" />
+                    <p:message for="txtPassageiro"/>
+
+
+                    <h:outputText  value="Piloto:"/>
+                    <h:outputText id="txtNome" 
+                                  value="#{corridaController.cadCorrida.piloto.nome}" />
+                    <p:message for="txtNome"/>
+
+                    <h:outputText value="Origem:"/>
+                    <p:inputTextarea id="txtOrigem"
+                                     value="#{corridaController.cadCorrida.origem}" required="true"
+                                     requiredMessage="Descreva a Origem da corrida"/> 
+                    <p:message for="txtOrigem"/>
+
+                    <h:outputText value="Destino:"/>
+                    <p:inputTextarea id="txtDestino"
+                                     value="#{corridaController.cadCorrida.destino}" required="true"
+                                     requiredMessage="Descreva o Destino  da corrida"/> 
+                    <p:message for="txtDestino"/>
+
+
+                </p:panelGrid>
+                <p:commandButton value="Cadastrar" 
+                                 oncomplete="PF('widDialConfirmCadCorrida').show()"/>
+
+
+            </p:fieldset>
+
+            <p:messages/>
+
+            <p:dialog id="dialConfirmCadCorrida" visible="false" resizable="false"
+                      modal="true" widgetVar="widDialConfirmCadCorrida" header="Atenção!">
+
+                <h:outputText value="Deseja realmente cadastrar o Corrida?"/>
+                <br/>
+                <p:commandButton value="Sim" action="#{corridaController.cadastrar()}"
+                                 update=":formCadCorrida" oncomplete="PF('widDialConfirmCadCorrida').hide();"/>
+                <p:commandButton value="Não" oncomplete="PF('widDialConfirmCorrida').hide()"/>
+
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>
+
+
+
+
+
+
+
+

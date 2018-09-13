@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>LevAliMenu</title>
+    </h:head>
+
+    <h:body>
+
+        
+        <c:if test="${loginControllerPiloto.pilotoLogado==null}">
+            <script>location.href = "indexlogar.xhtml";</script>
+        </c:if>
+
+        <h:form id="paformMenu">
+            <h:form id="formMenu">
+                <p:menubar>
+                    <p:menuitem value="Página Inicial" url="indexlogar.xhtml" icon="ui-icon-extlink"/>
+
+                    <p:submenu label="Piloto" icon="ui-icon-person">
+                        <p:menuitem value="Meu Perfil" url="apresentapilotologado.xhtml"/>
+                        <p:menuitem value="Logout" url="indexlogar.xhtml"/>
+                    </p:submenu>
+
+                    <p:submenu label="Corridas Disponiveis">
+                        <p:menuitem value ="Listar"  url="apresentacorridasdisponiveispiloto.xhtml"/>
+
+                    </p:submenu>
+
+                    <p:submenu label="Minhas Corridas">
+                        <p:menuitem value ="Listar"  url="apresentacorridaspiloto.xhtml"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Alterar Corrida</title>
+    </h:head>
+    <h:body>
+
+        <ui:include src="menupassageirologado.xhtml"/>
+        
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
+        
+        <h:form>
+            <p:fieldset legend="Alterar Corrida">
+                <p:panelGrid columns="2">
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{corridaController.selectedCorrida.id}"/>
+                    
+                    <h:outputText value="Origem"/>
+                    <p:inputText value="#{corridaController.selectedCorrida.origem}"/>
+                    
+                    <h:outputText value="Destino"/>
+                    <p:inputTextarea value="#{corridaController.selectedCorrida.destino}"/>
+
+                </p:panelGrid>
+                <p:commandButton value="alterar" action="#{corridaController.alterar()}"/>
+                
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>

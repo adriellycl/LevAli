@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title></title>
+    </h:head>
+    <h:body>
+          <ui:include src="menuindexlogado.xhtml"/>
+         
+          <p:growl id="gro" life="4000" showDetail="true" 
+                     showSummary="true"/>
+       
+          <p:fieldset legend="Cadastro do Piloto">
+
+          <h:form>
+            <p:dialog id="dialMoto" visible="true" resizable="false" modal="true"
+                      widgetVar="widDialMoto" header="Cadastro da Moto">
+                <p:tab>
+                    <p:panelGrid columns="3" columnClasses="label, values">
+                        
+                        
+                        <h:outputText value="Placa *"/>
+                        <p:inputMask id="txtPlaca" value="#{motoController.cadMoto.placa}" mask="aaa-9999" required="true"
+                                     requiredMessage="Informe a placa da Moto"/>
+                        <p:messages for="txtPlaca"/>
+
+                        <h:outputText value="Modelo *"/>
+                        <p:inputText id="txtModelo" value="#{motoController.cadMoto.modelo}"
+                                     requiredMessage="Informe o modelo da Moto"/>
+                        <p:message for="txtModelo"/>
+                        
+                        <h:outputText value="Cor *"/>
+                        <p:inputText  id="txtCor" value="#{motoController.cadMoto.cor}" required="true"
+                                     requiredMessage="Informe a Cor da Moto" />
+                        <p:messages for="txtCor"/>
+                
+                        
+                        
+                        </p:panelGrid>
+                    <p:commandButton value="Next" action="#{motoController.cadastrar()}"
+                                     oncomplete="PF('widDialLocal').show()" onclick="PF('widDialMoto').hide()"/>
+                </p:tab> 
+            </p:dialog>
+        </h:form>
+        <h:form>
+               
+            <p:dialog id="dialLocal" visible="false" resizable="false" modal="true"
+                         widgetVar="widDialLocal" header="Cadastro do Piloto">
+                <p:tab>
+                    <p:panelGrid columns="3" >
+                    
+                    <h:outputText value="Nome*:"/>
+                    <p:inputText id="txtNome" value="#{pilotoController.cadPiloto.nome}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtNome' />
+
+
+                    <h:outputText value="CNH*:"/>
+                    <p:inputMask id="txtCnh" value="#{pilotoController.cadPiloto.cnh}" mask="999999999" required="true"
+                                 requiredMessage="Está faltando o CNH"/>
+                    <p:message for='txtCnh' />
+                    
+                    
+                    <h:outputText value="CPF*:"/>
+                    <p:inputMask id="txtCPF" value="#{pilotoController.cadPiloto.cpf}" mask="999.999.999-99" required="true"
+                                 requiredMessage="Está faltando o CPF"/>
+                    <p:message for='txtCPF' />
+                    
+                    
+
+                    <h:outputText value="Data nascimento*:"/>
+                    <p:calendar id="txtdate" value="#{pilotoController.cadPiloto.dataNasc}" required="true"
+                                requiredMessage="Está faltando a data"/>
+                    <p:message for='txtdate' />
+                    
+                    
+                    <h:outputText value="E-mail*:"/>
+                    <p:inputText id="txtEmail" value="#{pilotoController.cadPiloto.email}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtEmail' />
+
+                    
+                    
+                    <h:outputText value="Endereço*:"/>
+                    <p:inputText id="txtEnd" value="#{pilotoController.cadPiloto.endereco}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtEnd' />
+
+                    <h:outputLabel value="Sexo: *" for="sexo"/>
+                    <p:selectOneMenu id="txtSexo" value="#{pilotoController.cadPiloto.sexo}" required="true" 
+                                     requiredMessage="Favor informar o sexo">
+                        <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                        <f:selectItem itemLabel="Outro"/>
+                    </p:selectOneMenu>
+                    <p:message for="txtSexo"/>
+
+                    <p:layoutUnit position="center">
+                        Senhas e validacoes:
+                    </p:layoutUnit>
+                </p:panelGrid>
+
+                <p:panelGrid columns="4">
+                    <h:outputText value="Login:"/>
+                    <p:inputText value="#{pilotoController.cadPiloto.login}"/>
+
+                    <h:outputText value="Senha*: " />
+                    <p:password id="txtSenha" value="#{pilotoController.cadPiloto.senha}" required="true"
+                                requiredMessage="A senha precisa ser preenchida!" />
+                    <p:message for='txtEnd' />     
+
+                    </p:panelGrid>
+                    <p:commandButton value="Cadastrar Piloto" action="#{pilotoController.cadastrar(motoController.cadMoto)}"
+                                     oncomplete="PF('widDialPiloto').show()" onclick="PF('widDialLocal').hide()"/>
+                </p:tab> 
+            </p:dialog>
+        </h:form>
+         
+      </p:fieldset>
+    </h:body>
+</html>

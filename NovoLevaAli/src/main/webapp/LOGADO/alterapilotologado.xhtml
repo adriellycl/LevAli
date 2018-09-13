@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Altera Piloto</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menupilotologado.xhtml"/>
+        <h:form>
+            <p:fieldset legend="Alterar Piloto">
+                <p:panelGrid columns="3">
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.id_piloto}"/>
+                    <br/>
+                    
+                                        <h:outputText value="Nome*:"/>
+                                        <p:inputText id="txtNome" value="#{pilotoController.selectedPiloto.nome}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtNome' />
+
+
+                    <h:outputText value="CNH*:"/>
+                    <p:inputMask id="txtCnh" value="#{pilotoController.selectedPiloto.cnh}" mask="999999999" required="true"
+                                 requiredMessage="Está faltando o CNH"/>
+                    <p:message for='txtCnh' />
+                    
+                    
+                    <h:outputText value="CPF*:"/>
+                    <p:inputMask id="txtCPF" value="#{pilotoController.selectedPiloto.cpf}" mask="999.999.999-99" required="true"
+                                 requiredMessage="Está faltando o CPF"/>
+                    <p:message for='txtCPF' />
+                    
+                    
+
+                    <h:outputText value="Data nascimento*:"/>
+                    <p:calendar id="txtdate" value="#{pilotoController.selectedPiloto.dataNasc}" required="true"
+                                requiredMessage="Está faltando a data"/>
+                    <p:message for='txtdate' />
+                    
+                    
+                    <h:outputText value="E-mail*:"/>
+                    <p:inputText id="txtEmail" value="#{pilotoController.selectedPiloto.email}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtEmail' />
+
+                    
+                    
+                    <h:outputText value="Endereço*:"/>
+                    <p:inputText id="txtEnd" value="#{pilotoController.selectedPiloto.endereco}" required="true"
+                                 requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtEnd' />
+
+                    <h:outputLabel value="Sexo: *" for="sexo"/>
+                    <p:selectOneMenu id="txtSexo" value="#{pilotoController.selectedPiloto.sexo}" required="true" 
+                                     requiredMessage="Favor informar o sexo">
+                        <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                        <f:selectItem itemLabel="Outro"/>
+                    </p:selectOneMenu>
+                    <p:message for="txtSexo"/>
+
+                    <p:layoutUnit position="center">
+                        Senhas e validacoes:
+                    </p:layoutUnit>
+                </p:panelGrid>
+
+                <p:panelGrid columns="4">
+                    <h:outputText value="Login:"/>
+                    <p:inputText value="#{pilotoController.selectedPiloto.login}"/>
+
+                    <h:outputText value="Senha*: " />
+                    <p:password id="txtSenha" value="#{pilotoController.selectedPiloto.senha}" required="true"
+                                requiredMessage="A senha precisa ser preenchida!" />
+                    <p:message for='txtEnd' />     
+                </p:panelGrid>
+               
+                <p:commandButton value="Alterar" action="#{pilotoController.alterar()}"/>
+                
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>
